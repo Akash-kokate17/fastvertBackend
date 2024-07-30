@@ -19,7 +19,7 @@ const h1Schema = new mongoose.Schema({
   text: String,
 });
 
-const H1Text = mongoose.model("H1Text", h1Schema);
+const H1Text = mongoose.model("h1texts", h1Schema);
 
 app.get("/api/h1", async (req, res) => {
   const h1 = await H1Text.findOne();
