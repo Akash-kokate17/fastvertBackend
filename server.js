@@ -9,10 +9,11 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://akashkokate1717:wR8PkkcvYsWZqCIW@fastvertassigment.zl9ypz4.mongodb.net/dynamicH1", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+async function ConnectDb() {
+  await mongoose.connect(
+    "mongodb+srv://akashkokate1717:wR8PkkcvYsWZqCIW@fastvertassigment.zl9ypz4.mongodb.net/dynamicH1"
+  );
+}
 
 const h1Schema = new mongoose.Schema({
   text: String,
@@ -38,4 +39,7 @@ app.post("/api/h1", async (req, res) => {
 });
 
 const port = 5000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, async () => {
+  await ConnectDb();
+  console.log(`Server running on port ${port}`);
+});
